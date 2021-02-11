@@ -37,11 +37,12 @@ void houxu(Btnode*p,int root){
 	cout<<" "<<root;
 }
 
-//根据层次访问的特点，当前层全访问结束时，也即下一层节点完全入队时
-//故可如下更改完成层序遍历
-//（采用队列，避免数组固定大小的麻烦）
+
+//层序遍历，记录版
 void cengxu(Btnode*p,int root){
 	queue<int>temp;
+	vector<vector<int>>rem;
+	vector<int>everylay;
 
 	temp.push(root);
 	temp.push(-1);//下层入队结束
@@ -50,6 +51,7 @@ void cengxu(Btnode*p,int root){
 		int now=temp.front();temp.pop();
 		if(now!=-1){
 			cout<<" "<<now;
+			everylay.push_back(now);
 			if(p[now].lc!=-1)temp.push(p[now].lc);
 			if(p[now].rc!=-1)temp.push(p[now].rc);
 		}
@@ -57,7 +59,16 @@ void cengxu(Btnode*p,int root){
 			if(!temp.empty()){
 				temp.push(-1);//下层入队结束,且未完全遍历
 			}
+			rem.push_back(everylay);
+			everylay.clear();
 		}
+	}
+	cout<<endl;
+	for(int i=0;i<rem.size();i++){
+		for(int j=0;j<rem[i].size();j++){
+			cout<<rem[i][j]<<" ";
+		}
+		cout<<endl;
 	}
 }
 
