@@ -54,7 +54,9 @@ void cengxu(Btnode*p,int root){
 			if(p[now].rc!=-1)temp.push(p[now].rc);
 		}
 		else {
-			temp.push(-1);//下层入队结束
+			if(!temp.empty()){
+				temp.push(-1);//下层入队结束,且未完全遍历
+			}
 		}
 	}
 }
