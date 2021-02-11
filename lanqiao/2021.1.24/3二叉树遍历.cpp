@@ -37,22 +37,26 @@ void houxu(Btnode*p,int root){
 	cout<<" "<<root;
 }
 
-void cengci(Btnode*p,int root,int n){
-	int*temp=new int[n];
-	int in=0,out=0;//其实是利用数组模拟队列功能
+//根据层次访问的特点，当前层全访问结束时，也即下一层节点完全入队时
+//故可如下更改完成层序遍历
+//（采用队列，避免数组固定大小的麻烦）
+void cengxu(Btnode*p,int root){
+	queue<int>temp;
 
-	temp[in++]=root;
+	temp.push(root);
+	temp.push(-1);//下层入队结束
 
-	while(in>out){
-		int now=temp[out];
+	while(!temp.empty()){
+		int now=temp.front();temp.pop();
 		if(now!=-1){
 			cout<<" "<<now;
-			if(p[now].lc!=-1)temp[in++]=p[now].lc;
-			if(p[now].rc!=-1)temp[in++]=p[now].rc;
+			if(p[now].lc!=-1)temp.push(p[now].lc);
+			if(p[now].rc!=-1)temp.push(p[now].rc);
 		}
-		out++;
+		else {
+			temp.push(-1);//下层入队结束
+		}
 	}
-	cout<<endl<<in<<" "<<out<<endl;
 }
 
 int main() {
@@ -91,6 +95,6 @@ int main() {
 	cout<<"Postorder"<<endl;
 	houxu(b1,root);cout<<endl;
 	cout<<"Levelorder"<<endl;
-	cengci(b1,root,n);cout<<endl;
+	cengxu(b1,root);cout<<endl;
 	return 0;
 }
