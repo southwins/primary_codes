@@ -1,4 +1,6 @@
 #include<iostream>
+#include<queue>
+#include<vector>
 using namespace std;
 
 struct Btnode {
@@ -33,6 +35,24 @@ void houxu(Btnode*p,int root){
 	if(p[root].lc!=-1)houxu(p,p[root].lc);
 	if(p[root].rc!=-1)houxu(p,p[root].rc);
 	cout<<" "<<root;
+}
+
+void cengci(Btnode*p,int root,int n){
+	int*temp=new int[n];
+	int in=0,out=0;//其实是利用数组模拟队列功能
+
+	temp[in++]=root;
+
+	while(in>out){
+		int now=temp[out];
+		if(now!=-1){
+			cout<<" "<<now;
+			if(p[now].lc!=-1)temp[in++]=p[now].lc;
+			if(p[now].rc!=-1)temp[in++]=p[now].rc;
+		}
+		out++;
+	}
+	cout<<endl<<in<<" "<<out<<endl;
 }
 
 int main() {
@@ -70,5 +90,7 @@ int main() {
 	zhongxu(b1,root);cout<<endl;
 	cout<<"Postorder"<<endl;
 	houxu(b1,root);cout<<endl;
+	cout<<"Levelorder"<<endl;
+	cengci(b1,root,n);cout<<endl;
 	return 0;
 }
