@@ -10,6 +10,11 @@ struct Edge{
 }edge[maxe];
 
 int cnt=0;
+void init(){
+    for(int i=0;i<maxv;i++){
+        head[i]=-1;
+    }
+}
 void add(int dd,int xd,int w){//分别代表所加边的顶点，向点和权值
     edge[cnt].w=w;
     edge[cnt].to=xd;
@@ -21,7 +26,7 @@ void adds(int dd,int xd,int w){//无向图双向加边
     add(xd,dd,w);
 }
 for trav(int v){//遍历v的所有边
-    for(int i=head[v];i!=0;i=head[v].next){
+    for(int i=head[v];i!=-1;i=edge[i].next){
         cout<<v<<"to"<<edge[i].to<<"cost"<<edge[i].w;
     }
 }
