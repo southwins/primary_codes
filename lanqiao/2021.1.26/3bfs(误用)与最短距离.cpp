@@ -6,12 +6,12 @@ vector<int>g[100];//邻接表最简便的形式
 
 int shuitong[100];
 
-void bfs(int to,int c){
+void bfs(int to,int c){//误用，其实是dfs
 	shuitong[to]=c;
 	c++;
 	for(int i=0;i<g[to].size();i++){
 	//	cout<<i<<endl;
-		if((g[to][i]!=1&&!shuitong[g[to][i]])||shuitong[g[to][i]]>c){
+		if((g[to][i]!=1&&!shuitong[g[to][i]])||shuitong[g[to][i]]>c){//第二个条件显然非第一次扫描，从这里可以看出，用的是dfs
 			bfs(g[to][i],c);
 		}
 	}
