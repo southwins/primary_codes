@@ -25,7 +25,7 @@ void adds(int dd,int xd,int w){//无向图双向加边
     add(dd,xd,w);
     add(xd,dd,w);
 }
-for trav(int v){//遍历v的所有边
+void trav(int v){//遍历v的所有边
     for(int i=head[v];i!=-1;i=edge[i].next){
         cout<<v<<"to"<<edge[i].to<<"cost"<<edge[i].w;
     }
