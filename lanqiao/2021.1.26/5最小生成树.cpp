@@ -51,7 +51,7 @@ int main(){
 	for(int i=1;i<=n;i++){
 		if(!color[i]){
 			cout<<"lose"<<i<<" "<<v[i]<<endl;
-			prim[v[i]];
+			prim(v[i]);
 		}
 	}
 	
